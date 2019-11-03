@@ -1,4 +1,7 @@
 import math from "../example/math";
+import {maxSumArray} from '../math/math';
+import {palinerome} from '../math/palinerome';
+import mock = jest.mock;
 
 expect.extend({
     toBeOdd(received) {
@@ -15,6 +18,7 @@ expect.extend({
         };
     }
 });
+
 
 describe("Math", () => {
     describe("Basic function test", () => {
@@ -36,26 +40,74 @@ describe("Math", () => {
             expect(mockedAdd.mock.results[0].value).toBe(3);
 
         });
-    });
 
 
-    describe('Basic Types', () => {
-        test('Enum#number', () => {
-            enum Color {Red, Green, Blue}
-
-            let c: Color = Color.Green;
-            expect(c).toBe(1)
+        it('파라미터를 1개만 받는다', () => {
         });
+    });            // const res1 = [1, 2, 3];
 
-        test('Enum#name', () => {
-            enum Color {Red = 1, Green, Blue}
+    const mockedSumArray = jest.fn();
+    // mockedSumArray.mockImplementation((array: any[]) => {
+    //     maxSumArray(array);
+    // });
+    mockedSumArray.mockImplementationOnce((array: any[]) => {
+        maxSumArray(array);
+    });
+    // mockedSumArray.mockImplementation();
+    // mockedSumArray.mockRejectedValueOnce(1);
 
-            let colorName: string = Color[2];
-            expect(colorName).toBe('Green')
+    const param = [1, 2, 3, 4, 5];
+    const param2 = [5, 6, 7, 8, 9];
+
+    mockedSumArray(param);
+    mockedSumArray(param2);
+    // mockedSumArray([1, 2, 3, 4, 5]);
+
+    expect(mockedSumArray).toHaveBeenCalledTimes(2); // 호출 수
+    expect(mockedSumArray.mock.calls.length).toBe(2);
+    // expect(mockedSumArray).toBeCalledWith(param);
+    //
+    expect(mockedSumArray.mock.calls[0][0]).toEqual(param);
+    expect(mockedSumArray.mock.calls[1][0]).toEqual(param2);
+    // expect(mockedSumArray.mock.calls).toMatchSnapshot();
+    expect(mockedSumArray.mock.results).toMatchSnapshot();
+
+
+
+
+    describe("maxSumArray", () => {
+        it('maxSumArray', () => {
+            expect(maxSumArray([-5, -3, -1])).toBe(-1);
+            expect(maxSumArray([-1, 3, -1, 5])).toBe(7);
+            expect(maxSumArray([2, 4, -2, -3, 8])).toBe(9);
         });
     });
 
-    test('two plus two is four', () => {
-        expect(2 + 2).toBe(4);
+    describe("palinerome", () => {
+        it('palinerome', () => {
+            const mockedPalinerome = jest.fn();
+            // mockedSumArray.mockImplementation((array: any[]) => {
+            //     maxSumArray(array);
+            // });
+            mockedPalinerome.mockImplementationOnce((number: any) => {
+                palinerome(number);
+            });
+
+            // mockedPalinerome.mockImplementation();
+
+            const testParam = 20;
+            // const testParam2 = 22;
+            // const testParam3 = 4;
+            // const testParam4 = 5678765;
+            // const testParam5 = 12345678900987654321;
+            mockedPalinerome(testParam);
+            expect(mockedPalinerome).toBe(false);
+            // expect(mockedPalinerome(testParam2)).toBe(true);
+            // expect(mockedPalinerome(testParam3)).toBe(true);
+            // expect(mockedPalinerome(testParam4)).toBe(false);
+            // expect(mockedPalinerome(testParam5)).toBe(true);
+
+        });
     });
+
 });

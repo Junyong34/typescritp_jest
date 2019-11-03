@@ -1,0 +1,26 @@
+{
+  "name": "typescritp_jest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jest.config.js",
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "jest": "^24.9.0",
+    "ts-node": "^8.4.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4",
+    "typescript-json-schema": "^0.40.0"
+  },
+  "devDependencies": {
+    "@types/faker": "^4.1.7",
+    "@types/jest": "^24.0.21",
+    "axios": "^0.19.0",
+    "faker": "^4.1.0"
+  },
+  "scripts": {
+    "test": "jest --verbose --updateSnapshot",
+    "test2": "jest",
+    "test:coverage": "jest --coverage",
+    "schema": "ts-node ./src/utils/jsc.ts"
+  }
+}
