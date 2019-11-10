@@ -8,6 +8,7 @@
     ],
     "strict": true,
     "declaration": true,
+    "noImplicitAny": false,
     "outDir": "dist",
     "sourceMap": true,
     "typeRoots": [
