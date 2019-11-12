@@ -6,8 +6,7 @@
   "dependencies": {
     "jest": "^24.9.0",
     "ts-node": "^8.4.1",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.6.4"
+    "ts-jest": "^24.1.0"
   },
   "devDependencies": {
     "@types/faker": "^4.1.7",
@@ -17,6 +16,7 @@
     "axios": "^0.19.0",
     "faker": "^4.1.0",
     "moment": "^2.24.0",
+    "typescript": "^3.7.2",
     "typescript-json-schema": "^0.40.0"
   },
   "scripts": {
