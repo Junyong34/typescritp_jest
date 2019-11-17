@@ -24,26 +24,26 @@ describe("kubernetes-info", () => {
     beforeAll(() => {
         console.log("beforeAll");
     });
-    it('비동기 테스트 - 1', () => {
-        // 테스트가 통과 ?
-        fetchSample(1, (user => {
-            expect(user).toEqual({
-                id: 1,
-                name: 'User1',
-                email: '1@test.com'
-            })
-        }));
-    });
-    it('비동기 테스트 - 2', (done) => {
-        fetchSample(1, (user => {
-            expect(user).toEqual({
-                id: 1,
-                name: 'User1',
-                email: '1@test.com'
-            });
-            done();
-        }));
-    });
+    // it('비동기 테스트 - 1', () => {
+    //     // 테스트가 통과 ?
+    //     fetchSample(1, (user => {
+    //         expect(user).toEqual({
+    //             id: 1,
+    //             name: 'User1',
+    //             email: '1@test.com'
+    //         })
+    //     }));
+    // });
+    // it('비동기 테스트 - 2', (done) => {
+    //     fetchSample(1, (user => {
+    //         expect(user).toEqual({
+    //             id: 1,
+    //             name: 'User1',
+    //             email: '1@test.com'
+    //         });
+    //         done();
+    //     }));
+    // });
     // it 함수가 Promise를 리턴하면 Jest Runner는 리턴된 Promise가 resolve될 때까지 기다려줍니다.
     // it('비동기 테스트 - 3', () => {
     //  return fetchSample2(2).then(user => {
@@ -55,33 +55,75 @@ describe("kubernetes-info", () => {
     //     });
     // });
 
-    it('비동기 테스트 - 4', async () => {
-        const user = await fetchSample2(2);
-        expect(user).toEqual({
-            id: 2,
-            name: 'User2',
-            email: '2@test.com'
+
+    jest.setTimeout(1000);
+    describe("Done", () => {
+        it("Wait?", async () => {
+            async function fetchData(cb) {
+                return new Promise( resolve =>{
+                    console.log(11111);
+                    resolve(cb);
+                });
+            }
+
+            async function callback(data) {
+                console.log(22222);
+                expect(data).toBe("peanut butter");
+                // done;
+            }
+
+            await fetchData("aaa").then((d: any) =>{
+                console.log(d);
+                callback(d);
+            });
         });
     });
 
-    test('findOne returns a user', async () => {
-        const user = await findOne(1);
 
-        // console.log(user);
-        expect(user).toHaveProperty('id', 1);
-        // expect(user).toHaveProperty('name', 'Leanne Graham');
-    });
-    it('비동기 테스트 - 5', async () => {
-        // serviceIns.setApiPath($api.information.nodelist);
-        // const url = `http://${domain}${$api.information.nodelist}`;
-        const url = `http://${domain}${$api.authResource.auth_resources}`;
-        console.log(url, 131231231);
-        const res = await apiCall.get(
-            url,
-            // {clusterId: "core"},
-        )
-        console.log(res);
-    });
+    // it('비동기 테스트 - 4', async () => {
+    //     await fetchSample2(2).then(d =>{
+    //         expect(d).toEqual({
+    //             id: 2,
+    //             name: 'User2',
+    //             email: '2@test.com'
+    //         });
+    //     });
+    //     await fetchSample2(3).then(d =>{
+    //         expect(d).toEqual({
+    //             id: 2,
+    //             name: 'User2',
+    //             email: '2@test.com'
+    //         });
+    //     });
+
+
+        // const user2 = await fetchSample2(3);
+        //
+        // expect(user2).toEqual({
+        //     id: 3,
+        //     name: 'User3',
+        //     email: '3@test.com'
+        // });
+    // });
+
+    // test('findOne returns a user', async () => {
+    //     const user = await findOne(1);
+    //
+    //     // console.log(user);
+    //     expect(user).toHaveProperty('id', 1);
+    //     // expect(user).toHaveProperty('name', 'Leanne Graham');
+    // });
+    // it('비동기 테스트 - 5', async () => {
+    //     // serviceIns.setApiPath($api.information.nodelist);
+    //     // const url = `http://${domain}${$api.information.nodelist}`;
+    //     const url = `http://${domain}${$api.authResource.auth_resources}`;
+    //     console.log(url, 131231231);
+    //     const res = await apiCall.get(
+    //         url,
+    //         // {clusterId: "core"},
+    //     )
+    //     console.log(res);
+    // });
 
 
     // const res: object = await apiCall.get(
@@ -106,17 +148,17 @@ it("clusterIdList", () => {
 
 
 describe('Basic Types', () => {
-    test('Enum#number', () => {
-        enum Color {Red, Green, Blue}
-
-        let c: Color = Color.Green;
-        expect(c).toBe(1)
-    });
-
-    test('Enum#name', () => {
-        enum Color {Red = 1, Green, Blue}
-
-        let colorName: string = Color[2];
-        expect(colorName).toBe('Green')
-    });
+    // test('Enum#number', () => {
+    //     enum Color {Red, Green, Blue}
+    //
+    //     let c: Color = Color.Green;
+    //     expect(c).toBe(1)
+    // });
+    //
+    // test('Enum#name', () => {
+    //     enum Color {Red = 1, Green, Blue}
+    //
+    //     let colorName: string = Color[2];
+    //     expect(colorName).toBe('Green')
+    // });
 });

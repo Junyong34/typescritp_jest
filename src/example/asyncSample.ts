@@ -21,6 +21,6 @@ export const fetchSample2 = (id: number) => {
                email: id + '@test.com'
            };
            resolve(user);
-       }, 100);
+       }, 1000);
    })
 };

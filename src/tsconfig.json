@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "../src",
     "target": "es5",
     "module": "commonjs",
     "lib": [
@@ -13,15 +14,14 @@
     "sourceMap": true,
     "typeRoots": [
       "../node_modules/@types",
-      "./typings"
+      "<rootDir>/typings"
     ],
-//    "strictNullChecks": false
+    "strictNullChecks": false
   },
   "include": [
     "./**/*"
   ],
   "exclude": [
-    "node_modules",
-    "src/**/*.spec.ts"
+    "node_modules"
   ]
 }

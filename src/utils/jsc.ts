@@ -3,8 +3,8 @@ import * as fs from "fs";
 import {pipe} from "./index";
 import * as TJS from "typescript-json-schema";
 import {validate} from "./validate";
-import StudentITFPayload from "../schema/StudentITFPayload";
-import {JsonSchemaGenerator} from "typescript-json-schema";
+// import StudentITFPayload from "../schema/StudentITFPayload";
+// import {JsonSchemaGenerator} from "typescript-json-schema";
 
 // optionally pass argument to schema generator
 const settings: TJS.PartialArgs = {
@@ -13,7 +13,7 @@ const settings: TJS.PartialArgs = {
 
 // optionally pass ts compiler options
 const compilerOptions: TJS.CompilerOptions = {
-    strictNullChecks: true
+    strictNullChecks: false
 }
 
 // src
@@ -50,6 +50,7 @@ const makeGennerate = (file: string[]): IGenerator => {
     const program = TJS.getProgramFromFiles(file, compilerOptions, BASE_URL);
     const generator = TJS.buildGenerator(program, settings);
 
+    console.log(TJS.buildGenerator(program, settings));
     return {
         generator: generator as TJS.JsonSchemaGenerator,
         file,
@@ -61,6 +62,8 @@ const makeSymbols = ({generator, file}: IGenerator) => {
     // const schema = generator.getSchemaForSymbol("StudentInterface");
     const filesStr = file.join(", ");
     const symbols = generator.getUserSymbols();
+
+    console.log(symbols.length, 321890389012)
 
     const schemas = symbols.filter(symbol => !!filesStr.match(symbol));
     console.log(`변환 가능한 ${schemas.length} 개의 파일을 찾았습니다.`);
@@ -85,9 +88,9 @@ const makeSymbols = ({generator, file}: IGenerator) => {
 };
 //
 console.log("파일변환시작");
-// pipe(getFiles, makeGennerate, makeSymbols)();
+pipe(getFiles, makeGennerate, makeSymbols)();
 
-validate(StudentITFPayload, {
-    name: "aaa",
-    friend: ["a",2,3],
-})
+// validate(StudentITFPayload, {
+//     name: "aaa",
+//     friend: ["a",2,3],
+// })
